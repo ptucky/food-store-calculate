@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Food Store Calculate</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noimageindex, nofollow, nosnippet" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://crm.crella.app/app-assets/css/bootstrap.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://crm.crella.app/app-assets/css/bootstrap-extended.css"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://crm.crella.app/app-assets/css/components.css"
+    />
+
+    <!-- END: Custom CSS-->
+    <style>
+      button:not(:disabled),
+      [type="button"]:not(:disabled),
+      [type="reset"]:not(:disabled),
+      [type="submit"]:not(:disabled) {
+        outline: none;
+      }
+      i.bx.bx-search.primary:hover {
+        color: #f30 !important;
+      }
+      .btn-search {
+        padding-top: 12px;
+        border: none;
+        background: none;
+      }
+      .search-input {
+        background: #fff;
+      }
+    </style>
+
+    <style>
+      .divider .divider-text {
+        background: #009688 !important;
+        color: #fff;
+      }
+      button.bootstrap-touchspin-injected {
+        display: none;
+      }
+      .product-err-msg {
+        display: none;
+      }
+      .cursor {
+        cursor: pointer;
+      }
+
+      @media screen and (max-width: 600px) {
+        .kanban-sidebar {
+          width: 100%;
+        }
+      }
+      @media screen and (min-width: 601px) {
+        .kanban-sidebar {
+          width: 40%;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="vertical-layout vertical-menu-modern boxicon-layout no-card-shadow 2-columns navbar-sticky footer-static"
+    data-open="click"
+    data-menu="vertical-menu-modern"
+    data-col="2-columns"
+  >
+    <div id="app-vue">
+      <div class="app-content p-2">
+        <div class="">
+          <div class="row">
+            <!-- LEFT -->
+            <div class="col-md-8 col-12">
+              <div class="divider">
+                <div class="divider-text">Products</div>
+              </div>
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <div data-repeater-list="sales">
+                      <div class="row">
+                        <div class="col-md-5 col-3 mb-50">
+                          <label class="text-nowrap">Products</label>
+                        </div>
+                        <div class="col-md-3 col-3 mb-50">
+                          <label class="text-nowrap">Price &#8362;</label>
+                        </div>
+                        <div class="col-md-3 col-3 mb-50">
+                          <label class="text-nowrap">Amount</label>
+                        </div>
+                      </div>
+
+                      <div class="row pb-1" data-repeater-item>
+                        <div class="col-md-5 col-12 form-group">
+                          Red set
+                          <span class="alert-danger pull-left product-err-msg"
+                            >Please select product!</span
+                          >
+                        </div>
+                        <div class="col-md-3 col-6 form-group">
+                          <input
+                            class="form-control product-price"
+                            name="price"
+                            type="text"
+                            value="50"
+                            readonly
+                          />
+                        </div>
+                        <div class="col-md-3 col-6 form-group">
+                          <input
+                            class="amount product-amount"
+                            maxlength="6"
+                            name="amount"
+                            type="text"
+                            value="0"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row pb-1" data-repeater-item>
+                        <div class="col-md-5 col-12 form-group">
+                          Green set
+                          <span class="alert-danger pull-left product-err-msg"
+                            >Please select product!</span
+                          >
+                        </div>
+                        <div class="col-md-3 col-6 form-group">
+                          <input
+                            class="form-control product-price"
+                            name="price"
+                            type="text"
+                            value="40"
+                            readonly
+                          />
+                        </div>
+                        <div class="col-md-3 col-6 form-group">
+                          <input
+                            ref="green"
+                            class="amount product-amount"
+                            maxlength="6"
+                            name="amount"
+                            type="text"
+                            value="0"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row pb-1" data-repeater-item>
+                        <div class="col-md-5 col-12 form-group">
+                          Blue set
+                          <span class="alert-danger pull-left product-err-msg"
+                            >Please select product!</span
+                          >
+                        </div>
+                        <div class="col-md-3 col-6 form-group">
+                          <input
+                            class="form-control product-price"
+                            name="price"
+                            type="text"
+                            value="30"
+                            readonly
+                          />
+                        </div>
+                        <div class="col-md-3 col-6 form-group">
+                          <input
+                            class="amount product-amount"
+                            maxlength="6"
+                            name="amount"
+                            type="text"
+                            value="0"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row pb-1" data-repeater-item>
+                        <div class="col-md-5 col-12 form-group">
+                          Yellow set
+                          <span class="alert-danger pull-left product-err-msg"
+                            >Please select product!</span
+                          >
+                        </div>
+                        <div class="col-md-3 col-6 form-group">
+                          <input
+                            class="form-control product-price"
+                            name="price"
+                            type="text"
+                            value="50"
+                            readonly
+                          />
+                        </div>
+                        <div class="col-md-3 col-6 form-group">
+                          <input
+                            class="amount product-amount"
+                            maxlength="6"
+                            name="amount"
+                            type="text"
+                            value="0"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row pb-1" data-repeater-item>
+                        <div class="col-md-5 col-12 form-group">
+                          Pink set
+                          <span class="alert-danger pull-left product-err-msg"
+                            >Please select product!</span
+                          >
+                        </div>
+                        <div class="col-md-3 col-6 form-group">
+                          <input
+                            class="form-control product-price"
+                            name="price"
+                            type="text"
+                            value="80"
+                            readonly
+                          />
+                        </div>
+                        <div class="col-md-3 col-6 form-group">
+                          <input
+                            ref="pink"
+                            class="amount product-amount"
+                            maxlength="6"
+                            name="amount"
+                            type="text"
+                            value="0"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row pb-1" data-repeater-item>
+                        <div class="col-md-5 col-12 form-group">
+                          Purple set
+                          <span class="alert-danger pull-left product-err-msg"
+                            >Please select product!</span
+                          >
+                        </div>
+                        <div class="col-md-3 col-6 form-group">
+                          <input
+                            class="form-control product-price"
+                            name="price"
+                            type="text"
+                            value="90"
+                            readonly
+                          />
+                        </div>
+                        <div class="col-md-3 col-6 form-group">
+                          <input
+                            class="amount product-amount"
+                            maxlength="6"
+                            name="amount"
+                            type="text"
+                            value="0"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row pb-1" data-repeater-item>
+                        <div class="col-md-5 col-12 form-group">
+                          Orange set
+                          <span class="alert-danger pull-left product-err-msg"
+                            >Please select product!</span
+                          >
+                        </div>
+                        <div class="col-md-3 col-6 form-group">
+                          <input
+                            class="form-control product-price"
+                            name="price"
+                            type="text"
+                            value="120"
+                            readonly
+                          />
+                        </div>
+                        <div class="col-md-3 col-6 form-group">
+                          <input
+                            ref="orange"
+                            class="amount product-amount"
+                            maxlength="6"
+                            name="amount"
+                            type="text"
+                            value="0"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="col-md-4 col-12">
+              <div class="col-12">
+                <div class="divider">
+                  <div class="divider-text">Totals</div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="checkbox checkbox-shadow pb-2">
+                        <input
+                          ref="memberCard"
+                          type="checkbox"
+                          class="checkbox__input"
+                          id="member-card"
+                          name="member-card"
+                          value=""
+                        />
+                        <label for="member-card"
+                          >I have a member card (get discount)</label
+                        >
+                      </div>
+                      <div class="col-md-12 d-inline-block text-right">
+                        <div
+                          class="invoice-subtotal"
+                          style="float: right; width: 100%; padding-bottom: 7px"
+                        >
+                          <div
+                            class="invoice-calc d-flex justify-content-between"
+                          >
+                            <span class="invoice-title">Subtotal:</span>
+                            <span
+                              class="invoice-value subTotalPrice"
+                              v-text="subTotalPrice"
+                            ></span>
+                          </div>
+                          <div
+                            class="invoice-calc d-flex justify-content-between"
+                          >
+                            <span class="invoice-title">Discount:</span>
+                            <span
+                              class="invoice-value discountPrice"
+                              v-text="discountPrice"
+                            ></span>
+                          </div>
+                          <div
+                            class="invoice-calc d-flex justify-content-between"
+                          >
+                            <input
+                              id="currency-code"
+                              name="currency-code"
+                              type="hidden"
+                              value="THB"
+                            />
+                          </div>
+                          <hr />
+                          <div
+                            class="invoice-calc d-flex justify-content-between"
+                          >
+                            <span class="invoice-title">Totals:</span>
+                            <span
+                              class="invoice-value totalPrice"
+                              v-text="totalPrice"
+                            ></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 d-flex justify-content-end">
+                <span
+                  class="btn btn-secondary mr-1 mb-1 cursor"
+                  v-on:click='calculateSale("Please select product!")'
+                  >Calculate</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END FORM -->
+      </div>
+    </div>
+
+    <!-- Production -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+
+    <!-- BEGIN: Vendor JS-->
+    <script src="https://crm.crella.app/app-assets/vendors/js/vendors.min.js"></script>
+
+    <!-- number -->
+    <script src="https://crm.crella.app/app-assets/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js"></script>
+    <script src="https://crm.crella.app/app-assets/js/scripts/forms/number-input.js"></script>
+    <script src="vue-script.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        $(".product-amount").TouchSpin({
+          buttondown_class: "btn btn-primary",
+          buttonup_class: "btn btn-primary",
+          min: 0,
+          max: 100,
+        });
+      });
+    </script>
+  </body>
+</html>
